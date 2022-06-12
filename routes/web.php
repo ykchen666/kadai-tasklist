@@ -11,8 +11,21 @@
 |
 */
 
-Route::resoure('Task', 'TasksController');
-Route::index('Task', 'TasksController@index');
-Route::show('Task', 'TasksController@show');
-Route::show('Task', 'TasksController@create');
-Route::edit('Task', 'TasksController@edit');
+Route::resource('Task', 'TasksController');
+
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+// CRUD
+// メッセージの個別詳細ページ表示
+Route::get('Task/{id}', 'TasksController@show');
+// create: 新規作成用のフォームページ
+Route::get('Task/create', 'TasksController@create');
+
+Route::post('Task', 'TasksController@edit');
+// index: showの補助ページ
+Route::get('Task', 'TasksController@index');
+
